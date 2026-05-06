@@ -391,6 +391,10 @@
         <p style="margin-top:14px; background:#fff5f5; border-left:4px solid #e53935; padding:12px 16px; border-radius:0 12px 12px 0; font-size:15px;" data-i18n="awareness_warning">
           <strong>Вызов «случайного» эвакуатора грозит:</strong> неконтролируемыми расходами, отсутствием документов для бухгалтерии и личной ответственностью менеджера за нарушение процедуры.
         </p>
+        <!-- Добавлено предупреждение о личных ТС -->
+        <p style="margin-top:14px; background:#fff3e0; border-left:4px solid #ff9800; padding:12px 16px; border-radius:0 12px 12px 0; font-size:15px;" data-i18n="awareness_personal_warning">
+          <strong>⚠️ Внимание:</strong> Эвакуация предоставляется только для транспортных средств (ТС) компании. На личные ТС сотрудников услуги эвакуатора не распространяются.
+        </p>
       </div>
     </div>
 
@@ -440,7 +444,7 @@
 
     <div class="section" id="sec4">
       <h2><span class="icon">🧪</span> <span data-i18n="test_title">Проверь себя: мини-тест</span></h2>
-      <p data-i18n="test_desc">Ответь на 3 вопроса, чтобы подтвердить знание процедуры. Нужно набрать 3/3.</p>
+      <p data-i18n="test_desc">Ответь на 4 вопроса, чтобы подтвердить знание процедуры. Нужно набрать 4/4.</p>
       <form id="testForm">
         <div class="test-question">
           <div class="question-title" data-i18n="test_q1">1. В каких случаях разрешено вызывать эвакуатор?</div>
@@ -466,6 +470,15 @@
             <label><input type="radio" name="q3" value="1"> <span data-i18n="test_q3_opt3">Создать заявку в ITSM с фото</span></label>
           </div>
         </div>
+        <!-- Новый вопрос -->
+        <div class="test-question">
+          <div class="question-title" data-i18n="test_q4">4. На какие ТС распространяется вызов эвакуатора?</div>
+          <div class="options" data-i18n="test_q4_options">
+            <label><input type="radio" name="q4" value="0"> <span data-i18n="test_q4_opt1">На любые ТС, включая личные</span></label>
+            <label><input type="radio" name="q4" value="1"> <span data-i18n="test_q4_opt2">Только на корпоративные ТС компании</span></label>
+            <label><input type="radio" name="q4" value="0"> <span data-i18n="test_q4_opt3">Только на ТС менеджеров</span></label>
+          </div>
+        </div>
         <button type="button" class="btn" id="submitTest" data-i18n="test_submit">✅ Завершить тест</button>
       </form>
       <div id="testResult" style="margin-top:16px; font-weight:600;"></div>
@@ -482,7 +495,7 @@
     </div>
 
     <footer data-i18n="footer_text">
-      © Сервис CarTaxi · 8 800 333 51 81 · Микрообучение для ресторанов
+      По всем вопросам, связанным с ТС, обращаться на почту: dec@tanuki.ru
     </footer>
   </div>
 
@@ -509,6 +522,7 @@
         card4_title: "📊 Учёт и аналитика",
         card4_desc: "Каждая заявка попадает в отчётность. Это позволяет транспортному отделу контролировать расходы и планировать обслуживание автопарка.",
         awareness_warning: "<strong>Вызов «случайного» эвакуатора грозит:</strong> неконтролируемыми расходами, отсутствием документов для бухгалтерии и личной ответственностью менеджера за нарушение процедуры.",
+        awareness_personal_warning: "<strong>⚠️ Внимание:</strong> Эвакуация предоставляется только для транспортных средств (ТС) компании. На личные ТС сотрудников услуги эвакуатора не распространяются.",
         desire_title: "Твоя выгода как менеджера",
         desire_1_title: "Быстрое решение.",
         desire_1_desc: "Соблюдение процедуры ускоряет процесс эвакуации транспортного средства (ТС).",
@@ -530,7 +544,7 @@
         knowledge_step5_desc: "Обновить необходимые статусы доставки. Передать информацию о транспортном средстве (ТС) в транспортный отдел и своим руководителям.",
         knowledge_payment_note: "<strong>💳 Оплата: безналичный расчёт.</strong> Наличные — только с личного разрешения руководителя транспортного отдела.",
         test_title: "Проверь себя: мини-тест",
-        test_desc: "Ответь на 3 вопроса, чтобы подтвердить знание процедуры. Нужно набрать 3/3.",
+        test_desc: "Ответь на 4 вопроса, чтобы подтвердить знание процедуры. Нужно набрать 4/4.",
         test_q1: "1. В каких случаях разрешено вызывать эвакуатор?",
         test_q1_opt1: "Если курьер опаздывает",
         test_q1_opt2: "Только при ДТП или поломке, когда транспортное средство (ТС) не может ехать",
@@ -543,12 +557,16 @@
         test_q3_opt1: "Позвонить другу",
         test_q3_opt2: "Ждать, пока эвакуатор приедет, и ничего не делать",
         test_q3_opt3: "Создать заявку в ITSM с фото",
+        test_q4: "4. На какие ТС распространяется вызов эвакуатора?",
+        test_q4_opt1: "На любые ТС, включая личные",
+        test_q4_opt2: "Только на корпоративные ТС компании",
+        test_q4_opt3: "Только на ТС менеджеров",
         test_submit: "✅ Завершить тест",
         badge_title: "Поздравляем!",
         badge_name: "Мастер эвакуации",
         badge_text: "Ура! Успешно освоена процедура и подтверждены знания. Этот бейдж отражает твою готовность сохранить клиентский сервис даже в нештатной ситуации.",
         badge_xp: "Супер",
-        footer_text: "© Сервис CarTaxi · 8 800 333 51 81 · Микрообучение для ресторанов",
+        footer_text: "По всем вопросам, связанным с ТС, обращаться на почту: dec@tanuki.ru",
         test_result_please: "Пожалуйста, ответьте на все вопросы.",
         test_result_success: "🎉 Отлично! Все ответы верны.",
         test_result_fail: "Вы набрали",
@@ -575,6 +593,7 @@
         card4_title: "📊 Эсеп жана аналитика",
         card4_desc: "Ар бир тапшырык отчетко кирет. Бул транспорт бөлүмүнө чыгымдарды көзөмөлдөөгө жана унаа паркын тейлөөнү пландоого мүмкүндүк берет.",
         awareness_warning: "<strong>Кокустан эвакуатор чакыруу коркутат:</strong> көзөмөлсүз чыгымдар, бухгалтерия үчүн документтердин жоктугу жана менеджердин жеке жоопкерчилиги.",
+        awareness_personal_warning: "<strong>⚠️ Көңүл буруңуз:</strong> Эвакуация компаниянын транспорт каражаттарына (ТС) гана көрсөтүлөт. Кызматкерлердин жеке ТС эвакуатор кызматы колдонулбайт.",
         desire_title: "Менеджер катары пайдаңыз",
         desire_1_title: "Тез чечим.",
         desire_1_desc: "Процедураны сактоо транспорт каражатын (ТС) эвакуациялоо процессин тездетет.",
@@ -596,7 +615,7 @@
         knowledge_step5_desc: "Жеткирүү статусун жаңырт. Транспорт каражаты (ТС) тууралуу маалыматты транспорт бөлүмүнө жана жетекчилериңе өткөр.",
         knowledge_payment_note: "<strong>💳 Төлөм: накталай эмес эсептешүү.</strong> Накталай акча — транспорт бөлүмүнүн жетекчисинин жеке уруксаты менен гана.",
         test_title: "Өзүңдү сына: мини-тест",
-        test_desc: "Процедураны билгениңди тастыктоо үчүн 3 суроого жооп бер. 3/3 алыш керек.",
+        test_desc: "Процедураны билгениңди тастыктоо үчүн 4 суроого жооп бер. 4/4 алыш керек.",
         test_q1: "1. Кайсы учурларда эвакуатор чакырууга болот?",
         test_q1_opt1: "Эгер курьер кечигип жатса",
         test_q1_opt2: "ДТП же бузулууда, транспорт каражаты (ТС) өзү жүрө албаса гана",
@@ -609,12 +628,16 @@
         test_q3_opt1: "Досуңа чал",
         test_q3_opt2: "Эвакуаторду күтүп, эч нерсе кылбай отур",
         test_q3_opt3: "ITSMде сүрөт менен тапшырык түз",
+        test_q4: "4. Эвакуатор чакыруу кайсы ТС үчүн жеткиликтүү?",
+        test_q4_opt1: "Ар кандай ТС, анын ичинде жеке",
+        test_q4_opt2: "Компаниянын корпоративдик ТС гана",
+        test_q4_opt3: "Менеджерлердин ТС гана",
         test_submit: "✅ Тестти бүтүр",
         badge_title: "Куттуктайбыз!",
         badge_name: "Эвакуация мырзасы",
         badge_text: "Ура! Процедура ийгиликтүү өздөштүрүлдү жана билимдер тастыкталды. Бул белги сиздин кардарларды тейлөөнү өзгөчө кырдаалда да сактап калууга даяр экениңизди көрсөтөт.",
         badge_xp: "Супер",
-        footer_text: "© CarTaxi кызматы · 8 800 333 51 81 · Ресторандар үчүн микро-окутуу",
+        footer_text: "ТС боюнча бардык суроолор боюнча почтага кайрылыңыз: dec@tanuki.ru",
         test_result_please: "Сураныч, бардык суроолорго жооп бериңиз.",
         test_result_success: "🎉 Мыкты! Бардык жооптор туура.",
         test_result_fail: "Сиз",
@@ -641,6 +664,7 @@
         card4_title: "📊 Hisob va tahlil",
         card4_desc: "Har bir so‘rov hisobotga tushadi. Bu transport bo‘limiga xarajatlarni nazorat qilish va avtoparkka xizmat ko‘rsatishni rejalashtirish imkonini beradi.",
         awareness_warning: "<strong>Tasodifiy evakuator chaqirish tahdid qiladi:</strong> nazoratsiz xarajatlar, buxgalteriya uchun hujjatlarning yo‘qligi va menejerning shaxsiy javobgarligi.",
+        awareness_personal_warning: "<strong>⚠️ Ogohlantirish:</strong> Evakuatsiya faqat kompaniyaning transport vositalariga (ТС) ko‘rsatiladi. Xodimlarning shaxsiy ТС ga evakuator xizmati tatbiq etilmaydi.",
         desire_title: "Menejer sifatida foydangiz",
         desire_1_title: "Tez yechim.",
         desire_1_desc: "Protseduraga rioya qilish transport vositasini (ТС) evakuatsiya qilish jarayonini tezlashtiradi.",
@@ -662,7 +686,7 @@
         knowledge_step5_desc: "Yetkazib berish holatini yangila. Transport vositasi (ТС) haqida ma'lumotni transport bo‘limiga va rahbarlaringga yetkaz.",
         knowledge_payment_note: "<strong>💳 To‘lov: naqd pulsiz hisob-kitob.</strong> Naqd pul — transport bo‘limi rahbarining shaxsiy ruxsati bilangina.",
         test_title: "O‘zingni tekshir: mini-test",
-        test_desc: "Protsedurani bilganingni tasdiqlash uchun 3 savolga javob ber. 3/3 olish kerak.",
+        test_desc: "Protsedurani bilganingni tasdiqlash uchun 4 savolga javob ber. 4/4 olish kerak.",
         test_q1: "1. Qaysi hollarda evakuator chaqirish mumkin?",
         test_q1_opt1: "Agar kuryer kechikayotgan bo‘lsa",
         test_q1_opt2: "Faqat YTH yoki buzilishda, transport vositasi (ТС) o‘zi yura olmasa",
@@ -675,12 +699,16 @@
         test_q3_opt1: "Do‘stingga qo‘ng‘iroq qil",
         test_q3_opt2: "Evakuatorni kutib, hech nima qilmay o‘tir",
         test_q3_opt3: "ITSMda suratli so‘rov yarat",
+        test_q4: "4. Evakuator chaqiruvi qaysi ТС uchun mavjud?",
+        test_q4_opt1: "Har qanday ТС, shu jumladan shaxsiy",
+        test_q4_opt2: "Faqat kompaniyaning korporativ ТС",
+        test_q4_opt3: "Faqat menejerlarning ТС",
         test_submit: "✅ Testni yakunla",
         badge_title: "Tabriklaymiz!",
         badge_name: "Evakuatsiya ustasi",
         badge_text: "Ura! Protsedura muvaffaqiyatli o‘zlashtirildi va bilimlar tasdiqlandi. Ushbu nishon sizning mijozlar xizmatini hatto favqulodda vaziyatda ham saqlab qolishga tayyorligingizni aks ettiradi.",
         badge_xp: "Super",
-        footer_text: "© CarTaxi xizmati · 8 800 333 51 81 · Restoranlar uchun mikroo‘qitish",
+        footer_text: "ТС bo‘yicha barcha savollar bo‘yicha pochta orqali murojaat qiling: dec@tanuki.ru",
         test_result_please: "Iltimos, barcha savollarga javob bering.",
         test_result_success: "🎉 Ajoyib! Barcha javoblar to‘g‘ri.",
         test_result_fail: "Siz",
@@ -707,6 +735,7 @@
         card4_title: "📊 Баҳисобгирӣ ва таҳлил",
         card4_desc: "Ҳар як дархост ба ҳисобот дохил мешавад. Ин ба шуъбаи нақлиёт имкон медиҳад, ки хароҷотро назорат ва хидматрасонии автопаркро ба нақша гирад.",
         awareness_warning: "<strong>Даъвати эвакуатори тасодуфӣ таҳдид мекунад:</strong> хароҷоти назоратнашаванда, набудани ҳуҷҷатҳо барои муҳосибӣ ва масъулияти шахсии менеҷер.",
+        awareness_personal_warning: "<strong>⚠️ Диққат:</strong> Эвакуатсия танҳо барои воситаҳои нақлиёти (ТС) ширкат пешбинӣ шудааст. Барои ТС шахсии кормандон хидмати эвакуатор дастрас нест.",
         desire_title: "Фоидаи шумо ҳамчун менеҷер",
         desire_1_title: "Ҳалли зуд.",
         desire_1_desc: "Риояи расмиёт раванди эвакуатсияи воситаи нақлиётро (ТС) метезонад.",
@@ -728,7 +757,7 @@
         knowledge_step5_desc: "Ҳолати расонданро нав кун. Маълумотро дар бораи воситаи нақлиёт (ТС) ба шуъбаи нақлиёт ва роҳбарони худ супор.",
         knowledge_payment_note: "<strong>💳 Пардохт: ҳисоббаробаркунии ғайринақдӣ.</strong> Пули нақд — танҳо бо иҷозати шахсии роҳбари шуъбаи нақлиёт.",
         test_title: "Худро санҷ: мини-тест",
-        test_desc: "Ба 3 савол ҷавоб деҳ, то дониши расмиётро тасдиқ кунӣ. 3/3 гирифтан лозим аст.",
+        test_desc: "Ба 4 савол ҷавоб деҳ, то дониши расмиётро тасдиқ кунӣ. 4/4 гирифтан лозим аст.",
         test_q1: "1. Дар кадом ҳолатҳо эвакуатор даъват кардан мумкин аст?",
         test_q1_opt1: "Агар курьер дер кунад",
         test_q1_opt2: "Фақат ҳангоми садама ё вайроншавӣ, вақте ки воситаи нақлиёт (ТС) ҳаракат карда наметавонад",
@@ -741,12 +770,16 @@
         test_q3_opt1: "Ба дӯстат занг зан",
         test_q3_opt2: "Эвакуаторро интизор шав ва ҳеҷ кор накун",
         test_q3_opt3: "Дар ITSM дархост бо сурат эҷод кун",
+        test_q4: "4. Даъвати эвакуатор барои кадом ТС дастрас аст?",
+        test_q4_opt1: "Барои ҳама гуна ТС, аз ҷумла шахсӣ",
+        test_q4_opt2: "Танҳо барои ТС корпоративии ширкат",
+        test_q4_opt3: "Танҳо барои ТС менеҷерон",
         test_submit: "✅ Тестро хатм кун",
         badge_title: "Табрик мекунем!",
         badge_name: "Устоди эвакуатсия",
         badge_text: "Ура! Расмиёт бомуваффақият азхуд карда шуд ва донишҳо тасдиқ гардиданд. Ин нишон омодагии шуморо барои нигоҳ доштани хидматрасонии мизоҷон ҳатто дар ҳолатҳои фавқулодда инъикос мекунад.",
         badge_xp: "Супер",
-        footer_text: "© Хидмати CarTaxi · 8 800 333 51 81 · Микроомӯзиш барои тарабхонаҳо",
+        footer_text: "Оид ба ҳамаи саволҳои марбут ба ТС ба почта муроҷиат кунед: dec@tanuki.ru",
         test_result_please: "Лутфан, ба ҳамаи саволҳо ҷавоб диҳед.",
         test_result_success: "🎉 Олӣ! Ҳамаи ҷавобҳо дуруст.",
         test_result_fail: "Шумо",
@@ -820,12 +853,13 @@
       const q1 = document.querySelector('input[name="q1"]:checked');
       const q2 = document.querySelector('input[name="q2"]:checked');
       const q3 = document.querySelector('input[name="q3"]:checked');
-      if (!q1 || !q2 || !q3) {
+      const q4 = document.querySelector('input[name="q4"]:checked');
+      if (!q1 || !q2 || !q3 || !q4) {
         testResult.innerHTML = `<span style="color:#d32f2f;">${translations[currentLang].test_result_please}</span>`;
         return;
       }
-      const score = parseInt(q1.value) + parseInt(q2.value) + parseInt(q3.value);
-      if (score === 3) {
+      const score = parseInt(q1.value) + parseInt(q2.value) + parseInt(q3.value) + parseInt(q4.value);
+      if (score === 4) {
         testResult.innerHTML = `<span style="color:#2e7d32;">${translations[currentLang].test_result_success}</span>`;
         if (!sectionsCompleted.test) {
           sectionsCompleted.test = true;
@@ -836,7 +870,7 @@
           sec5.scrollIntoView({ behavior: 'smooth' });
         }
       } else {
-        testResult.innerHTML = `<span style="color:#d32f2f;">${translations[currentLang].test_result_fail} ${score}/3. ${translations[currentLang].test_result_retry}</span>`;
+        testResult.innerHTML = `<span style="color:#d32f2f;">${translations[currentLang].test_result_fail} ${score}/4. ${translations[currentLang].test_result_retry}</span>`;
       }
     });
 
