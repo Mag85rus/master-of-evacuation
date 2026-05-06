@@ -381,7 +381,7 @@
           </div>
           <div class="mini-card">
             <strong data-i18n="card3_title">🛡️ Юридическая защита</strong><br>
-            <span data-i18n="card3_desc">Официальный договор гарантирует страховку транспортного средства (ТС). В случае повреждений при транспортировке ответственность несёт подрядчик.</span>
+            <span data-i18n="card3_desc">Официальный договор гарантирует страховку груза и транспортного средства (ТС). В случае повреждений при транспортировке ответственность несёт подрядчик.</span>
           </div>
           <div class="mini-card">
             <strong data-i18n="card4_title">📊 Учёт и аналитика</strong><br>
@@ -391,7 +391,6 @@
         <p style="margin-top:14px; background:#fff5f5; border-left:4px solid #e53935; padding:12px 16px; border-radius:0 12px 12px 0; font-size:15px;" data-i18n="awareness_warning">
           <strong>Вызов «случайного» эвакуатора грозит:</strong> неконтролируемыми расходами, отсутствием документов для бухгалтерии и личной ответственностью менеджера за нарушение процедуры.
         </p>
-        <!-- Добавлено предупреждение о личных ТС -->
         <p style="margin-top:14px; background:#fff3e0; border-left:4px solid #ff9800; padding:12px 16px; border-radius:0 12px 12px 0; font-size:15px;" data-i18n="awareness_personal_warning">
           <strong>⚠️ Внимание:</strong> Эвакуация предоставляется только для транспортных средств (ТС) компании. На личные ТС сотрудников услуги эвакуатора не распространяются.
         </p>
@@ -412,7 +411,8 @@
         <div class="step-num">✓</div>
         <div><strong data-i18n="desire_3_title">Повышение авторитета.</strong> <span data-i18n="desire_3_desc">Команда видит, что руководитель действует чётко, без паники — это укрепляет доверие.</span></div>
       </div>
-      <p style="margin-top:14px;font-style:italic;" data-i18n="desire_badge_hint">💡«Начните с малого, мыслите масштабно» (Стив Джобс).</p>
+      <!-- Заменено на цитату -->
+      <p style="margin-top:14px;font-style:italic;" data-i18n="desire_quote">💡 «Начните с малого, мыслите масштабно» (Стив Джобс)</p>
     </div>
 
     <div class="section" id="sec3">
@@ -435,7 +435,8 @@
       </div>
       <div class="step">
         <div class="step-num">5</div>
-        <div><strong data-i18n="knowledge_step5_title">Оповестить смену.</strong> <span data-i18n="knowledge_step5_desc">Обновить необходимые статусы доставки. Передать информацию о транспортном средстве (ТС) в транспортный отдел и своим руководителям.</span></div>
+        <!-- Изменён заголовок -->
+        <div><strong data-i18n="knowledge_step5_title">Оповестить.</strong> <span data-i18n="knowledge_step5_desc">Обновить необходимые статусы доставки. Передать информацию о транспортном средстве (ТС) в транспортный отдел и своим руководителям.</span></div>
       </div>
       <div style="background:#fff5f5; border-radius:18px; padding:14px; margin-top:16px;" data-i18n="knowledge_payment_note">
         <strong>💳 Оплата: безналичный расчёт.</strong> Наличные — только с личного разрешения руководителя транспортного отдела.
@@ -470,7 +471,6 @@
             <label><input type="radio" name="q3" value="1"> <span data-i18n="test_q3_opt3">Создать заявку в ITSM с фото</span></label>
           </div>
         </div>
-        <!-- Новый вопрос -->
         <div class="test-question">
           <div class="question-title" data-i18n="test_q4">4. На какие ТС распространяется вызов эвакуатора?</div>
           <div class="options" data-i18n="test_q4_options">
@@ -530,7 +530,7 @@
         desire_2_desc: "При корректном вызове CarTaxi все расходы берёт компания.",
         desire_3_title: "Повышение авторитета.",
         desire_3_desc: "Команда видит, что руководитель действует чётко, без паники — это укрепляет доверие.",
-        desire_badge_hint: "Пройди обучение до конца.",
+        desire_quote: "💡 «Начните с малого, мыслите масштабно» (Стив Джобс)",
         knowledge_title: "Полная инструкция: шаг за шагом",
         knowledge_step1_title: "Обеспечить безопасность.",
         knowledge_step1_desc: "Включить аварийную сигнализацию, выставить знак аварийной остановки. При ДТП вызвать ДПС и сделать фото.",
@@ -540,7 +540,7 @@
         knowledge_step3_desc: "Создать заявку, прикрепить фото эвакуации — это основание для безналичной оплаты.",
         knowledge_step4_title: "Контролировать погрузку.",
         knowledge_step4_desc: "Дождаться эвакуатор, убедиться, что транспортное средство (ТС) надёжно закреплено. Получить сопроводительные документы.",
-        knowledge_step5_title: "Оповестить смену.",
+        knowledge_step5_title: "Оповестить.",
         knowledge_step5_desc: "Обновить необходимые статусы доставки. Передать информацию о транспортном средстве (ТС) в транспортный отдел и своим руководителям.",
         knowledge_payment_note: "<strong>💳 Оплата: безналичный расчёт.</strong> Наличные — только с личного разрешения руководителя транспортного отдела.",
         test_title: "Проверь себя: мини-тест",
@@ -601,7 +601,7 @@
         desire_2_desc: "CarTaxi туура чакырылса, бардык чыгымдарды компания төлөйт.",
         desire_3_title: "Беделдин жогорулашы.",
         desire_3_desc: "Команда жетекчи так жана дүрбөлөңсүз иш кылып жатканын көрүп, ишеним бекемделет.",
-        desire_badge_hint: "Окутууну аягына чейин өтүңүз.",
+        desire_quote: "💡 «Кичинеден баштап, ири ой жүгүрт» (Стив Жобс)",
         knowledge_title: "Толук нускама: кадам сайын",
         knowledge_step1_title: "Коопсуздукту камсыз кылуу.",
         knowledge_step1_desc: "Авариялык сигнализацияны күйгүз, авариялык токтоо белгисин кой. ДТП болсо, ДПС чакыр жана сүрөткө тарт.",
@@ -611,7 +611,7 @@
         knowledge_step3_desc: "Тапшырык түз, эвакуациянын сүрөтүн тирке — бул накталай эмес төлөмгө негиз.",
         knowledge_step4_title: "Жүктөөнү көзөмөлдө.",
         knowledge_step4_desc: "Эвакуаторду күт, транспорт каражаты (ТС) бекем бекитилгенин текшер. Кошумча документтерди ал.",
-        knowledge_step5_title: "Сменага кабарла.",
+        knowledge_step5_title: "Кабарлоо.",
         knowledge_step5_desc: "Жеткирүү статусун жаңырт. Транспорт каражаты (ТС) тууралуу маалыматты транспорт бөлүмүнө жана жетекчилериңе өткөр.",
         knowledge_payment_note: "<strong>💳 Төлөм: накталай эмес эсептешүү.</strong> Накталай акча — транспорт бөлүмүнүн жетекчисинин жеке уруксаты менен гана.",
         test_title: "Өзүңдү сына: мини-тест",
@@ -672,7 +672,7 @@
         desire_2_desc: "CarTaxi to‘g‘ri chaqirilsa, barcha xarajatlarni kompaniya to‘laydi.",
         desire_3_title: "Obro‘ning oshishi.",
         desire_3_desc: "Jamoa rahbar aniq va vahimasiz harakat qilayotganini ko‘rib, ishonch mustahkamlanadi.",
-        desire_badge_hint: "O‘qitishni oxirigacha o‘tab.",
+        desire_quote: "💡 «Kichikdan boshlang, katta o‘ylang» (Stiv Jobs)",
         knowledge_title: "To‘liq yo‘riqnoma: qadam-baqadam",
         knowledge_step1_title: "Xavfsizlikni ta'minlash.",
         knowledge_step1_desc: "Avariya signalini yoq, avariya to‘xtash belgisini qo‘y. YTH bo‘lsa, YPX chaqir va suratga ol.",
@@ -682,7 +682,7 @@
         knowledge_step3_desc: "So‘rov yarat, evakuatsiya suratini ilova qil — bu naqd pulsiz to‘lov uchun asos.",
         knowledge_step4_title: "Yuklashni nazorat qil.",
         knowledge_step4_desc: "Evakuatorni kut, transport vositasi (ТС) mustahkam mahkamlanganiga ishonch hosil qil. Qo‘shimcha hujjatlarni ol.",
-        knowledge_step5_title: "Smenani xabardor qil.",
+        knowledge_step5_title: "Xabar berish.",
         knowledge_step5_desc: "Yetkazib berish holatini yangila. Transport vositasi (ТС) haqida ma'lumotni transport bo‘limiga va rahbarlaringga yetkaz.",
         knowledge_payment_note: "<strong>💳 To‘lov: naqd pulsiz hisob-kitob.</strong> Naqd pul — transport bo‘limi rahbarining shaxsiy ruxsati bilangina.",
         test_title: "O‘zingni tekshir: mini-test",
@@ -743,7 +743,7 @@
         desire_2_desc: "Ҳангоми дуруст даъват кардани CarTaxi, ҳама хароҷотро ширкат пардохт мекунад.",
         desire_3_title: "Баланд шудани обрӯ.",
         desire_3_desc: "Даста мебинад, ки роҳбар аниқ ва бидуни ваҳм амал мекунад — ин бовариро мустаҳкам мекунад.",
-        desire_badge_hint: "Омӯзишро то охир гузаред.",
+        desire_quote: "💡 «Аз хурд оғоз кунед, бузург фикр кунед» (Стив Ҷобс)",
         knowledge_title: "Дастури пурра: қадам ба қадам",
         knowledge_step1_title: "Таъмини бехатарӣ.",
         knowledge_step1_desc: "Сигнали садамавиро фурӯзон кун, аломати истгоҳи садамавиро гузор. Агар садама шуда бошад, ДПС-ро даъват кун ва сурат гир.",
@@ -753,7 +753,7 @@
         knowledge_step3_desc: "Дархост эҷод кун, сурати эвакуатсияро замима кун — ин барои пардохти ғайринақдӣ асос аст.",
         knowledge_step4_title: "Боркуниро назорат кун.",
         knowledge_step4_desc: "Эвакуаторро интизор шав, боварӣ ҳосил кун, ки воситаи нақлиёт (ТС) мустаҳкам маҳкам шудааст. Ҳуҷҷатҳои ҳамроҳиро гир.",
-        knowledge_step5_title: "Сменаро огоҳ кун.",
+        knowledge_step5_title: "Огоҳ кардан.",
         knowledge_step5_desc: "Ҳолати расонданро нав кун. Маълумотро дар бораи воситаи нақлиёт (ТС) ба шуъбаи нақлиёт ва роҳбарони худ супор.",
         knowledge_payment_note: "<strong>💳 Пардохт: ҳисоббаробаркунии ғайринақдӣ.</strong> Пули нақд — танҳо бо иҷозати шахсии роҳбари шуъбаи нақлиёт.",
         test_title: "Худро санҷ: мини-тест",
