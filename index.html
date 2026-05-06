@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Эвакуация ТС доставки — микрообучение для менеджеров</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f9f9fb;
+      font-family: 'Inter', 'Segoe UI', Roboto, -apple-system, sans-serif;
+      color: #1e1e1e;
+      line-height: 1.5;
+      padding: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .lang-switcher {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .lang-btn {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.2s;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .lang-btn.active {
+      background: #e53935;
+      color: white;
+      border-color: #e53935;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #b71c1c 0%, #e53935 100%);
+      color: white;
+      border-radius: 24px;
+      padding: 24px 20px 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 12px 24px rgba(183, 28, 28, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -16px;
+      left: 0;
+      right: 0;
+      height: 32px;
+      background: inherit;
+      clip-path: polygon(0 0, 100% 0, 100% 60%, 0% 100%);
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hero-icon {
+      font-size: 42px;
+      background: rgba(255,255,255,0.2);
+      width: 64px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 20px;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero h1 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      line-height: 1.2;
+    }
+
+    .hero .sub {
+      font-size: 15px;
+      opacity: 0.9;
+      margin-top: 4px;
+    }
+
+    .xp-bar-container {
+      margin-top: 18px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 20px;
+      height: 12px;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .xp-bar {
+      width: 0%;
+      height: 100%;
+      background: #ffd54f;
+      border-radius: 20px;
+      transition: width 0.5s ease;
+    }
+
+    .xp-text {
+      margin-top: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      display: flex;
+      justify-content: space-between;
+      z-index: 1;
+      position: relative;
+    }
+
+    .section {
+      background: white;
+      border-radius: 20px;
+      padding: 20px 18px;
+      margin-bottom: 18px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+      border: 1px solid #fdecea;
+    }
+
+    .section h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #b71c1c;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .section h2 span.icon {
+      background: #ffebee;
+      border-radius: 10px;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .mini-card {
+      background: #fff7f7;
+      border-radius: 16px;
+      padding: 12px;
+      border: 1px solid #ffcccb;
+    }
+
+    .step {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 12px;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      background: #e53935;
+      color: white;
+      font-weight: 700;
+      min-width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 14px;
+    }
+
+    .test-question {
+      margin: 16px 0;
+    }
+
+    .question-title {
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .options label {
+      display: block;
+      background: #fafafa;
+      border: 1px solid #eee;
+      border-radius: 14px;
+      padding: 10px 14px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 15px;
+    }
+
+    .options input[type="radio"] {
+      margin-right: 10px;
+      accent-color: #e53935;
+    }
+
+    .options label:hover {
+      background: #fff0f0;
+      border-color: #f8877f;
+    }
+
+    .btn {
+      background: #e53935;
+      color: white;
+      border: none;
+      border-radius: 16px;
+      padding: 12px 24px;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 6px 14px rgba(229, 57, 53, 0.25);
+      margin-top: 8px;
+    }
+
+    .btn:hover {
+      background: #c62828;
+      transform: translateY(-1px);
+    }
+
+    .btn:disabled {
+      background: #ccc;
+      box-shadow: none;
+      pointer-events: none;
+    }
+
+    .badge-area {
+      background: #fff7e6;
+      border-radius: 20px;
+      padding: 16px;
+      text-align: center;
+      margin-top: 12px;
+      border: 2px solid #ffb74d;
+      display: none;
+    }
+
+    .badge-icon {
+      font-size: 48px;
+      margin-bottom: 8px;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: #9e9e9e;
+      margin-top: 24px;
+      padding-bottom: 8px;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 8px;
+      }
+      .hero {
+        padding: 20px 14px 16px;
+      }
+      .hero h1 {
+        font-size: 22px;
+      }
+      .hero-icon {
+        font-size: 32px;
+        width: 52px;
+        height: 52px;
+      }
+      .section {
+        padding: 16px 12px;
+      }
+      .section h2 {
+        font-size: 18px;
+      }
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+      .lang-switcher {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .hero h1 {
+        font-size: 20px;
+      }
+      .options label {
+        font-size: 14px;
+        padding: 8px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="lang-switcher">
+      <button class="lang-btn active" data-lang="ru">🇷🇺 RU</button>
+      <button class="lang-btn" data-lang="ky">🇰🇬 KG</button>
+      <button class="lang-btn" data-lang="uz">🇺🇿 UZ</button>
+      <button class="lang-btn" data-lang="tg">🇹🇯 TG</button>
+    </div>
+
+    <div class="hero" id="hero">
+      <div class="hero-content">
+        <div class="hero-icon">🚗</div>
+        <div>
+          <h1 data-i18n="hero_title">Эвакуация ТС доставки</h1>
+          <div class="sub" data-i18n="hero_sub">Микрообучение для управленческой команды</div>
+        </div>
+      </div>
+      <div class="xp-bar-container">
+        <div class="xp-bar" id="xpBar"></div>
+      </div>
+      <div class="xp-text">
+        <span data-i18n="progress_label">Прогресс обучения</span>
+        <span id="xpLabel">0 / 100 XP</span>
+      </div>
+    </div>
+
+    <div class="section" id="sec1">
+      <h2><span class="icon">🔍</span> <span data-i18n="awareness_title">Почему эвакуатор — только при ДТП/поломке и только с CarTaxi</span></h2>
+      
+      <div style="margin-bottom: 20px;">
+        <h3 style="color:#b71c1c; margin-bottom: 8px;" data-i18n="awareness_when_title">🚨 Когда разрешена эвакуация</h3>
+        <p data-i18n="awareness_when_text">Вызов эвакуатора возможен только в двух случаях: дорожно-транспортное происшествие или техническая поломка, при которых транспортное средство (ТС) не может продолжать движение своим ходом.</p>
+        <ul style="margin: 12px 0 0 20px; color:#2d3436;" data-i18n="awareness_when_list">
+          <li data-i18n="awareness_when_li1"><strong>Безопасность.</strong> Транспортное средство (ТС) с серьёзными повреждениями или неисправными тормозами/рулевым управлением представляет угрозу для водителя и окружающих.</li>
+          <li data-i18n="awareness_when_li2"><strong>Сохранность.</strong> Попытка доехать до ресторана на неисправном транспортном средстве (ТС) увеличивает риск повторной или новой поломки + полной остановки в пути.</li>
+          <li data-i18n="awareness_when_li3"><strong>Ответственность руководителя.</strong> Менеджер, разрешивший движение аварийного транспортного средства (ТС), берёт на себя риски усугубления поломки и возможного ДТП. Эвакуатор — это быстрое и безопасное решение.</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 style="color:#b71c1c; margin-bottom: 8px;" data-i18n="awareness_why_title">🤝 Почему только официальный подрядчик CarTaxi</h3>
+        <p data-i18n="awareness_why_text">Любой вызов эвакуатора должен проходить только через сервис CarTaxi — нашего корпоративного партнёра. Использование посторонних служб запрещено.</p>
+        <div class="card-grid" style="margin-top: 12px;" data-i18n="awareness_why_cards">
+          <div class="mini-card">
+            <strong data-i18n="card1_title">💰 Финансовый контроль</strong><br>
+            <span data-i18n="card1_desc">Безналичные расчёты по договору, прозрачные тарифы. Никаких наличных, никаких «левых» чеков. Каждая эвакуация подтверждается заявкой в ITSM.</span>
+          </div>
+          <div class="mini-card">
+            <strong data-i18n="card2_title">⏱️ Скорость подачи</strong><br>
+            <span data-i18n="card2_desc">Среднее время прибытия CarTaxi — 40 минут. Диспетчер знает наши адреса и требования, не нужно долго объяснять.</span>
+          </div>
+          <div class="mini-card">
+            <strong data-i18n="card3_title">🛡️ Юридическая защита</strong><br>
+            <span data-i18n="card3_desc">Официальный договор гарантирует страховку груза и транспортного средства (ТС). В случае повреждений при транспортировке ответственность несёт подрядчик.</span>
+          </div>
+          <div class="mini-card">
+            <strong data-i18n="card4_title">📊 Учёт и аналитика</strong><br>
+            <span data-i18n="card4_desc">Каждая заявка попадает в отчётность. Это позволяет транспортному отделу контролировать расходы и планировать обслуживание автопарка.</span>
+          </div>
+        </div>
+        <p style="margin-top:14px; background:#fff5f5; border-left:4px solid #e53935; padding:12px 16px; border-radius:0 12px 12px 0; font-size:15px;" data-i18n="awareness_warning">
+          <strong>Вызов «случайного» эвакуатора грозит:</strong> неконтролируемыми расходами, отсутствием документов для бухгалтерии и личной ответственностью менеджера за нарушение процедуры.
+        </p>
+      </div>
+    </div>
+
+    <div class="section" id="sec2">
+      <h2><span class="icon">💎</span> <span data-i18n="desire_title">Твоя выгода как менеджера</span></h2>
+      <div class="step">
+        <div class="step-num">✓</div>
+        <div><strong data-i18n="desire_1_title">Быстрое решение.</strong> <span data-i18n="desire_1_desc">Соблюдение процедуры ускоряет процесс эвакуации транспортного средства (ТС).</span></div>
+      </div>
+      <div class="step">
+        <div class="step-num">✓</div>
+        <div><strong data-i18n="desire_2_title">Никакой финансовой ответственности.</strong> <span data-i18n="desire_2_desc">При корректном вызове CarTaxi все расходы берёт компания.</span></div>
+      </div>
+      <div class="step">
+        <div class="step-num">✓</div>
+        <div><strong data-i18n="desire_3_title">Повышение авторитета.</strong> <span data-i18n="desire_3_desc">Команда видит, что руководитель действует чётко, без паники — это укрепляет доверие.</span></div>
+      </div>
+      <p style="margin-top:14px;font-style:italic;" data-i18n="desire_badge_hint">Пройди обучение до конца.</p>
+    </div>
+
+    <div class="section" id="sec3">
+      <h2><span class="icon">📘</span> <span data-i18n="knowledge_title">Полная инструкция: шаг за шагом</span></h2>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div><strong data-i18n="knowledge_step1_title">Обеспечить безопасность.</strong> <span data-i18n="knowledge_step1_desc">Включить аварийную сигнализацию, выставить знак аварийной остановки. При ДТП вызвать ДПС и сделать фото.</span></div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div><strong data-i18n="knowledge_step2_title">Звонок в CarTaxi 8 800 333 51 81.</strong> <span data-i18n="knowledge_step2_desc">Сообщить: ты от ООО «Проксима» (или Тануки), ФИО, телефон, госномер ТС, адрес подачи и назначения, состояние ТС (колёса, руль).</span></div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div><strong data-i18n="knowledge_step3_title">Заявка в ITSM.</strong> <span data-i18n="knowledge_step3_desc">Создать заявку, прикрепить фото эвакуации — это основание для безналичной оплаты.</span></div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div><strong data-i18n="knowledge_step4_title">Контролировать погрузку.</strong> <span data-i18n="knowledge_step4_desc">Дождаться эвакуатор, убедиться, что транспортное средство (ТС) надёжно закреплено. Получить сопроводительные документы.</span></div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div><strong data-i18n="knowledge_step5_title">Оповестить смену.</strong> <span data-i18n="knowledge_step5_desc">Обновить необходимые статусы доставки. Передать информацию о транспортном средстве (ТС) в транспортный отдел и своим руководителям.</span></div>
+      </div>
+      <div style="background:#fff5f5; border-radius:18px; padding:14px; margin-top:16px;" data-i18n="knowledge_payment_note">
+        <strong>💳 Оплата: безналичный расчёт.</strong> Наличные — только с личного разрешения руководителя транспортного отдела.
+      </div>
+    </div>
+
+    <div class="section" id="sec4">
+      <h2><span class="icon">🧪</span> <span data-i18n="test_title">Проверь себя: мини-тест</span></h2>
+      <p data-i18n="test_desc">Ответь на 3 вопроса, чтобы подтвердить знание процедуры. Нужно набрать 3/3.</p>
+      <form id="testForm">
+        <div class="test-question">
+          <div class="question-title" data-i18n="test_q1">1. В каких случаях разрешено вызывать эвакуатор?</div>
+          <div class="options" data-i18n="test_q1_options">
+            <label><input type="radio" name="q1" value="0"> <span data-i18n="test_q1_opt1">Если курьер опаздывает</span></label>
+            <label><input type="radio" name="q1" value="1"> <span data-i18n="test_q1_opt2">Только при ДТП или поломке, когда транспортное средство (ТС) не может ехать</span></label>
+            <label><input type="radio" name="q1" value="0"> <span data-i18n="test_q1_opt3">При любой неисправности, даже если ТС на ходу</span></label>
+          </div>
+        </div>
+        <div class="test-question">
+          <div class="question-title" data-i18n="test_q2">2. Почему нельзя вызывать случайный эвакуатор, а только CarTaxi?</div>
+          <div class="options" data-i18n="test_q2_options">
+            <label><input type="radio" name="q2" value="0"> <span data-i18n="test_q2_opt1">Потому что у них красивые машины</span></label>
+            <label><input type="radio" name="q2" value="1"> <span data-i18n="test_q2_opt2">Официальный договор, безналичный расчёт, контроль расходов и страховка</span></label>
+            <label><input type="radio" name="q2" value="0"> <span data-i18n="test_q2_opt3">Потому что так сказал директор</span></label>
+          </div>
+        </div>
+        <div class="test-question">
+          <div class="question-title" data-i18n="test_q3">3. Что нужно сделать сразу после звонка в CarTaxi?</div>
+          <div class="options" data-i18n="test_q3_options">
+            <label><input type="radio" name="q3" value="0"> <span data-i18n="test_q3_opt1">Позвонить другу</span></label>
+            <label><input type="radio" name="q3" value="0"> <span data-i18n="test_q3_opt2">Ждать, пока эвакуатор приедет, и ничего не делать</span></label>
+            <label><input type="radio" name="q3" value="1"> <span data-i18n="test_q3_opt3">Создать заявку в ITSM с фото</span></label>
+          </div>
+        </div>
+        <button type="button" class="btn" id="submitTest" data-i18n="test_submit">✅ Завершить тест</button>
+      </form>
+      <div id="testResult" style="margin-top:16px; font-weight:600;"></div>
+    </div>
+
+    <div class="section" id="sec5" style="display:none;">
+      <h2><span class="icon">🏆</span> <span data-i18n="badge_title">Поздравляем!</span></h2>
+      <div class="badge-area" id="badgeBox">
+        <div class="badge-icon">🥇</div>
+        <h3 style="color:#b71c1c;" data-i18n="badge_name">Мастер эвакуации</h3>
+        <p data-i18n="badge_text">Ура! Успешно освоена процедура и подтверждены знания. Этот бейдж отражает твою готовность сохранить клиентский сервис даже в нештатной ситуации.</p>
+        <p style="font-size:14px; color:#777;">+100 XP · <span data-i18n="badge_xp">Супер</span></p>
+      </div>
+    </div>
+
+    <footer data-i18n="footer_text">
+      © Сервис CarTaxi · 8 800 333 51 81 · Микрообучение для ресторанов
+    </footer>
+  </div>
+
+  <script>
+    const translations = {
+      ru: {
+        hero_title: "Эвакуация ТС доставки",
+        hero_sub: "Микрообучение для управленческой команды",
+        progress_label: "Прогресс обучения",
+        awareness_title: "Почему эвакуатор — только при ДТП/поломке и только с CarTaxi",
+        awareness_when_title: "🚨 Когда разрешена эвакуация",
+        awareness_when_text: "Вызов эвакуатора возможен только в двух случаях: дорожно-транспортное происшествие или техническая поломка, при которых транспортное средство (ТС) не может продолжать движение своим ходом.",
+        awareness_when_li1: "<strong>Безопасность.</strong> Транспортное средство (ТС) с серьёзными повреждениями или неисправными тормозами/рулевым управлением представляет угрозу для водителя и окружающих.",
+        awareness_when_li2: "<strong>Сохранность.</strong> Попытка доехать до ресторана на неисправном транспортном средстве (ТС) увеличивает риск повторной или новой поломки + полной остановки в пути.",
+        awareness_when_li3: "<strong>Ответственность руководителя.</strong> Менеджер, разрешивший движение аварийного транспортного средства (ТС), берёт на себя риски усугубления поломки и возможного ДТП. Эвакуатор — это быстрое и безопасное решение.",
+        awareness_why_title: "🤝 Почему только официальный подрядчик CarTaxi",
+        awareness_why_text: "Любой вызов эвакуатора должен проходить только через сервис CarTaxi — нашего корпоративного партнёра. Использование посторонних служб запрещено.",
+        card1_title: "💰 Финансовый контроль",
+        card1_desc: "Безналичные расчёты по договору, прозрачные тарифы. Никаких наличных, никаких «левых» чеков. Каждая эвакуация подтверждается заявкой в ITSM.",
+        card2_title: "⏱️ Скорость подачи",
+        card2_desc: "Среднее время прибытия CarTaxi — 40 минут. Диспетчер знает наши адреса и требования, не нужно долго объяснять.",
+        card3_title: "🛡️ Юридическая защита",
+        card3_desc: "Официальный договор гарантирует страховку груза и транспортного средства (ТС). В случае повреждений при транспортировке ответственность несёт подрядчик.",
+        card4_title: "📊 Учёт и аналитика",
+        card4_desc: "Каждая заявка попадает в отчётность. Это позволяет транспортному отделу контролировать расходы и планировать обслуживание автопарка.",
+        awareness_warning: "<strong>Вызов «случайного» эвакуатора грозит:</strong> неконтролируемыми расходами, отсутствием документов для бухгалтерии и личной ответственностью менеджера за нарушение процедуры.",
+        desire_title: "Твоя выгода как менеджера",
+        desire_1_title: "Быстрое решение.",
+        desire_1_desc: "Соблюдение процедуры ускоряет процесс эвакуации транспортного средства (ТС).",
+        desire_2_title: "Никакой финансовой ответственности.",
+        desire_2_desc: "При корректном вызове CarTaxi все расходы берёт компания.",
+        desire_3_title: "Повышение авторитета.",
+        desire_3_desc: "Команда видит, что руководитель действует чётко, без паники — это укрепляет доверие.",
+        desire_badge_hint: "Пройди обучение до конца.",
+        knowledge_title: "Полная инструкция: шаг за шагом",
+        knowledge_step1_title: "Обеспечить безопасность.",
+        knowledge_step1_desc: "Включить аварийную сигнализацию, выставить знак аварийной остановки. При ДТП вызвать ДПС и сделать фото.",
+        knowledge_step2_title: "Звонок в CarTaxi 8 800 333 51 81.",
+        knowledge_step2_desc: "Сообщить: ты от ООО «Проксима» (или Тануки), ФИО, телефон, госномер ТС, адрес подачи и назначения, состояние ТС (колёса, руль).",
+        knowledge_step3_title: "Заявка в ITSM.",
+        knowledge_step3_desc: "Создать заявку, прикрепить фото эвакуации — это основание для безналичной оплаты.",
+        knowledge_step4_title: "Контролировать погрузку.",
+        knowledge_step4_desc: "Дождаться эвакуатор, убедиться, что транспортное средство (ТС) надёжно закреплено. Получить сопроводительные документы.",
+        knowledge_step5_title: "Оповестить смену.",
+        knowledge_step5_desc: "Обновить необходимые статусы доставки. Передать информацию о транспортном средстве (ТС) в транспортный отдел и своим руководителям.",
+        knowledge_payment_note: "<strong>💳 Оплата: безналичный расчёт.</strong> Наличные — только с личного разрешения руководителя транспортного отдела.",
+        test_title: "Проверь себя: мини-тест",
+        test_desc: "Ответь на 3 вопроса, чтобы подтвердить знание процедуры. Нужно набрать 3/3.",
+        test_q1: "1. В каких случаях разрешено вызывать эвакуатор?",
+        test_q1_opt1: "Если курьер опаздывает",
+        test_q1_opt2: "Только при ДТП или поломке, когда транспортное средство (ТС) не может ехать",
+        test_q1_opt3: "При любой неисправности, даже если ТС на ходу",
+        test_q2: "2. Почему нельзя вызывать случайный эвакуатор, а только CarTaxi?",
+        test_q2_opt1: "Потому что у них красивые машины",
+        test_q2_opt2: "Официальный договор, безналичный расчёт, контроль расходов и страховка",
+        test_q2_opt3: "Потому что так сказал директор",
+        test_q3: "3. Что нужно сделать сразу после звонка в CarTaxi?",
+        test_q3_opt1: "Позвонить другу",
+        test_q3_opt2: "Ждать, пока эвакуатор приедет, и ничего не делать",
+        test_q3_opt3: "Создать заявку в ITSM с фото",
+        test_submit: "✅ Завершить тест",
+        badge_title: "Поздравляем!",
+        badge_name: "Мастер эвакуации",
+        badge_text: "Ура! Успешно освоена процедура и подтверждены знания. Этот бейдж отражает твою готовность сохранить клиентский сервис даже в нештатной ситуации.",
+        badge_xp: "Супер",
+        footer_text: "© Сервис CarTaxi · 8 800 333 51 81 · Микрообучение для ресторанов",
+        test_result_please: "Пожалуйста, ответьте на все вопросы.",
+        test_result_success: "🎉 Отлично! Все ответы верны.",
+        test_result_fail: "Вы набрали",
+        test_result_retry: "Перечитайте инструкцию и попробуйте снова."
+      },
+      ky: {
+        hero_title: "Жеткирүү ТС эвакуациялоо",
+        hero_sub: "Башкаруучулар үчүн микро-окутуу",
+        progress_label: "Окутуунун прогресси",
+        awareness_title: "Эмне үчүн эвакуатор — ДТП/бузулууда гана жана CarTaxi менен гана",
+        awareness_when_title: "🚨 Качан эвакуацияга уруксат берилет",
+        awareness_when_text: "Эвакуаторду чакыруу эки гана учурда мүмкүн: жол кырсыгы же техникалык бузулуу, транспорт каражаты (ТС) өз жүрүшү менен жүрө албаганда.",
+        awareness_when_li1: "<strong>Коопсуздук.</strong> Олуттуу бузулган же тормозу/рулу иштебеген транспорт каражаты (ТС) айдоочу жана айлана-чөйрө үчүн коркунуч туудурат.",
+        awareness_when_li2: "<strong>Сактоо.</strong> Бузук транспорт каражатында (ТС) ресторанга чейин жетүү аракети кайра бузулуу же жаңы бузулуу + жолдо толук токтоп калуу коркунучун жогорулатат.",
+        awareness_when_li3: "<strong>Жетекчинин жоопкерчилиги.</strong> Авариялык транспорт каражатынын (ТС) кыймылына уруксат берген менеджер бузулуунун ого бетер курчушу жана ДТП чыгуу тобокелдигин өз мойнуна алат. Эвакуатор — тез жана коопсуз чечим.",
+        awareness_why_title: "🤝 Эмне үчүн расмий өнөктөш CarTaxi гана",
+        awareness_why_text: "Эвакуаторду чакыруу биздин корпоративдик өнөктөшүбүз CarTaxi кызматы аркылуу гана болушу керек. Чоочун кызматтарды колдонууга тыюу салынат.",
+        card1_title: "💰 Финансылык көзөмөл",
+        card1_desc: "Келишим боюнча накталай эмес төлөмдөр, ачык тарифтер. Колма-кол акча жок, \"сол\" чектер жок. Ар бир эвакуация ITSMдеги тапшырык менен тастыкталат.",
+        card2_title: "⏱️ Тез келүү",
+        card2_desc: "CarTaxi орточо келүү убактысы — 40 мүнөт. Диспетчер биздин даректерди жана талаптарды билет, узак түшүндүрүүнүн кереги жок.",
+        card3_title: "🛡️ Юридикалык коргоо",
+        card3_desc: "Расмий келишим жүктү жана транспорт каражатын (ТС) камсыздандырууга кепилдик берет. Ташуу учурунда зыян келтирилсе, жоопкерчилик өнөктөшкө жүктөлөт.",
+        card4_title: "📊 Эсеп жана аналитика",
+        card4_desc: "Ар бир тапшырык отчетко кирет. Бул транспорт бөлүмүнө чыгымдарды көзөмөлдөөгө жана унаа паркын тейлөөнү пландоого мүмкүндүк берет.",
+        awareness_warning: "<strong>Кокустан эвакуатор чакыруу коркутат:</strong> көзөмөлсүз чыгымдар, бухгалтерия үчүн документтердин жоктугу жана менеджердин жеке жоопкерчилиги.",
+        desire_title: "Менеджер катары пайдаңыз",
+        desire_1_title: "Тез чечим.",
+        desire_1_desc: "Процедураны сактоо транспорт каражатын (ТС) эвакуациялоо процессин тездетет.",
+        desire_2_title: "Финансылык жоопкерчилик жок.",
+        desire_2_desc: "CarTaxi туура чакырылса, бардык чыгымдарды компания төлөйт.",
+        desire_3_title: "Беделдин жогорулашы.",
+        desire_3_desc: "Команда жетекчи так жана дүрбөлөңсүз иш кылып жатканын көрүп, ишеним бекемделет.",
+        desire_badge_hint: "Окутууну аягына чейин өтүңүз.",
+        knowledge_title: "Толук нускама: кадам сайын",
+        knowledge_step1_title: "Коопсуздукту камсыз кылуу.",
+        knowledge_step1_desc: "Авариялык сигнализацияны күйгүз, авариялык токтоо белгисин кой. ДТП болсо, ДПС чакыр жана сүрөткө тарт.",
+        knowledge_step2_title: "CarTaxi 8 800 333 51 81 номерине чал.",
+        knowledge_step2_desc: "Билдир: сен ООО «Проксима» (же Тануки) өкүлүсүң, аты-жөнү, телефону, ТС мамномери, кайдан жана кайда алып баруу керек, ТС абалы (дөңгөлөктөр, руль).",
+        knowledge_step3_title: "ITSMде тапшырык түз.",
+        knowledge_step3_desc: "Тапшырык түз, эвакуациянын сүрөтүн тирке — бул накталай эмес төлөмгө негиз.",
+        knowledge_step4_title: "Жүктөөнү көзөмөлдө.",
+        knowledge_step4_desc: "Эвакуаторду күт, транспорт каражаты (ТС) бекем бекитилгенин текшер. Кошумча документтерди ал.",
+        knowledge_step5_title: "Сменага кабарла.",
+        knowledge_step5_desc: "Жеткирүү статусун жаңырт. Транспорт каражаты (ТС) тууралуу маалыматты транспорт бөлүмүнө жана жетекчилериңе өткөр.",
+        knowledge_payment_note: "<strong>💳 Төлөм: накталай эмес эсептешүү.</strong> Накталай акча — транспорт бөлүмүнүн жетекчисинин жеке уруксаты менен гана.",
+        test_title: "Өзүңдү сына: мини-тест",
+        test_desc: "Процедураны билгениңди тастыктоо үчүн 3 суроого жооп бер. 3/3 алыш керек.",
+        test_q1: "1. Кайсы учурларда эвакуатор чакырууга болот?",
+        test_q1_opt1: "Эгер курьер кечигип жатса",
+        test_q1_opt2: "ДТП же бузулууда, транспорт каражаты (ТС) өзү жүрө албаса гана",
+        test_q1_opt3: "Ар кандай бузулууда, ТС жүрүп турса да",
+        test_q2: "2. Эмне үчүн кокустук эвакуаторду эмес, CarTaxi чакыруу керек?",
+        test_q2_opt1: "Алардын унаалары кооз болгону үчүн",
+        test_q2_opt2: "Расмий келишим, накталай эмес төлөм, чыгымдарды көзөмөлдөө жана камсыздандыруу",
+        test_q2_opt3: "Директор айткандыктан",
+        test_q3: "3. CarTaxi чакыргандан кийин дароо эмне кылыш керек?",
+        test_q3_opt1: "Досуңа чал",
+        test_q3_opt2: "Эвакуаторду күтүп, эч нерсе кылбай отур",
+        test_q3_opt3: "ITSMде сүрөт менен тапшырык түз",
+        test_submit: "✅ Тестти бүтүр",
+        badge_title: "Куттуктайбыз!",
+        badge_name: "Эвакуация мырзасы",
+        badge_text: "Ура! Процедура ийгиликтүү өздөштүрүлдү жана билимдер тастыкталды. Бул белги сиздин кардарларды тейлөөнү өзгөчө кырдаалда да сактап калууга даяр экениңизди көрсөтөт.",
+        badge_xp: "Супер",
+        footer_text: "© CarTaxi кызматы · 8 800 333 51 81 · Ресторандар үчүн микро-окутуу",
+        test_result_please: "Сураныч, бардык суроолорго жооп бериңиз.",
+        test_result_success: "🎉 Мыкты! Бардык жооптор туура.",
+        test_result_fail: "Сиз",
+        test_result_retry: "упай алдыңыз. Нускаманы кайра окуп, кайра аракет кылыңыз."
+      },
+      uz: {
+        hero_title: "Yetkazib berish ТС evakuatsiyasi",
+        hero_sub: "Boshqaruv jamoasi uchun mikroo‘qitish",
+        progress_label: "O‘qitish progressi",
+        awareness_title: "Nega evakuator — faqat YTH/buzilishda va faqat CarTaxi bilan",
+        awareness_when_title: "🚨 Qachon evakuatsiyaga ruxsat beriladi",
+        awareness_when_text: "Evakuatorni faqat ikki holatda chaqirish mumkin: yo‘l-transport hodisasi yoki texnik nosozlik, transport vositasi (ТС) o‘z yurishi bilan harakatlana olmaganda.",
+        awareness_when_li1: "<strong>Xavfsizlik.</strong> Jiddiy shikastlangan yoki tormoz/ rul boshqaruvi ishlamaydigan transport vositasi (ТС) haydovchi va atrofdagilar uchun xavf tug‘diradi.",
+        awareness_when_li2: "<strong>Saqlash.</strong> Nosoz transport vositasida (ТС) restoranga yetib borishga harakat qayta buzilish yoki yangi buzilish + yo‘lda to‘liq to‘xtash xavfini oshiradi.",
+        awareness_when_li3: "<strong>Rahbarning javobgarligi.</strong> Avariya holatidagi transport vositasiga (ТС) harakatiga ruxsat bergan menejer buzilish chuqurlashishi va YTH ehtimoli xavfini o‘z zimmasiga oladi. Evakuator — tez va xavfsiz yechim.",
+        awareness_why_title: "🤝 Nega faqat rasmiy hamkor CarTaxi",
+        awareness_why_text: "Evakuator chaqiruvi faqat bizning korporativ hamkorimiz CarTaxi xizmati orqali amalga oshirilishi kerak. Chet xizmatlardan foydalanish taqiqlanadi.",
+        card1_title: "💰 Moliyaviy nazorat",
+        card1_desc: "Shartnoma bo‘yicha naqd pulsiz to‘lovlar, shaffof tariflar. Naqd pul yo‘q, \"chap\" cheklar yo‘q. Har bir evakuatsiya ITSMda so‘rov bilan tasdiqlanadi.",
+        card2_title: "⏱️ Tez yetib kelish",
+        card2_desc: "CarTaxi o‘rtacha yetib kelish vaqti — 40 daqiqa. Dispetcher bizning manzillarimiz va talablarimizni biladi, uzoq tushuntirish kerak emas.",
+        card3_title: "🛡️ Yuridik himoya",
+        card3_desc: "Rasmiy shartnoma yuk va transport vositasini (ТС) sug‘urtasini kafolatlaydi. Tashish paytida shikast yetkazilsa, javobgarlik hamkor zimmasida.",
+        card4_title: "📊 Hisob va tahlil",
+        card4_desc: "Har bir so‘rov hisobotga tushadi. Bu transport bo‘limiga xarajatlarni nazorat qilish va avtoparkka xizmat ko‘rsatishni rejalashtirish imkonini beradi.",
+        awareness_warning: "<strong>Tasodifiy evakuator chaqirish tahdid qiladi:</strong> nazoratsiz xarajatlar, buxgalteriya uchun hujjatlarning yo‘qligi va menejerning shaxsiy javobgarligi.",
+        desire_title: "Menejer sifatida foydangiz",
+        desire_1_title: "Tez yechim.",
+        desire_1_desc: "Protseduraga rioya qilish transport vositasini (ТС) evakuatsiya qilish jarayonini tezlashtiradi.",
+        desire_2_title: "Moliyaviy javobgarlik yo‘q.",
+        desire_2_desc: "CarTaxi to‘g‘ri chaqirilsa, barcha xarajatlarni kompaniya to‘laydi.",
+        desire_3_title: "Obro‘ning oshishi.",
+        desire_3_desc: "Jamoa rahbar aniq va vahimasiz harakat qilayotganini ko‘rib, ishonch mustahkamlanadi.",
+        desire_badge_hint: "O‘qitishni oxirigacha o‘tab.",
+        knowledge_title: "To‘liq yo‘riqnoma: qadam-baqadam",
+        knowledge_step1_title: "Xavfsizlikni ta'minlash.",
+        knowledge_step1_desc: "Avariya signalini yoq, avariya to‘xtash belgisini qo‘y. YTH bo‘lsa, YPX chaqir va suratga ol.",
+        knowledge_step2_title: "CarTaxi 8 800 333 51 81 raqamiga qo‘ng‘iroq qil.",
+        knowledge_step2_desc: "Xabar ber: sen OOO «Proksima» (yoki Tanuki) vakilisan, F.I.O., telefon, ТС davlat raqami, qayerdan va qayerga olib borish kerak, ТС holati (g‘ildiraklar, rul).",
+        knowledge_step3_title: "ITSMda so‘rov yarat.",
+        knowledge_step3_desc: "So‘rov yarat, evakuatsiya suratini ilova qil — bu naqd pulsiz to‘lov uchun asos.",
+        knowledge_step4_title: "Yuklashni nazorat qil.",
+        knowledge_step4_desc: "Evakuatorni kut, transport vositasi (ТС) mustahkam mahkamlanganiga ishonch hosil qil. Qo‘shimcha hujjatlarni ol.",
+        knowledge_step5_title: "Smenani xabardor qil.",
+        knowledge_step5_desc: "Yetkazib berish holatini yangila. Transport vositasi (ТС) haqida ma'lumotni transport bo‘limiga va rahbarlaringga yetkaz.",
+        knowledge_payment_note: "<strong>💳 To‘lov: naqd pulsiz hisob-kitob.</strong> Naqd pul — transport bo‘limi rahbarining shaxsiy ruxsati bilangina.",
+        test_title: "O‘zingni tekshir: mini-test",
+        test_desc: "Protsedurani bilganingni tasdiqlash uchun 3 savolga javob ber. 3/3 olish kerak.",
+        test_q1: "1. Qaysi hollarda evakuator chaqirish mumkin?",
+        test_q1_opt1: "Agar kuryer kechikayotgan bo‘lsa",
+        test_q1_opt2: "Faqat YTH yoki buzilishda, transport vositasi (ТС) o‘zi yura olmasa",
+        test_q1_opt3: "Har qanday nosozlikda, hatto ТС yurib tursa ham",
+        test_q2: "2. Nega tasodifiy evakuatorni emas, faqat CarTaxi chaqirish kerak?",
+        test_q2_opt1: "Chunki ularning mashinalari chiroyli",
+        test_q2_opt2: "Rasmiy shartnoma, naqd pulsiz to‘lov, xarajatlarni nazorat qilish va sug‘urta",
+        test_q2_opt3: "Chunki direktor shunday dedi",
+        test_q3: "3. CarTaxi chaqirgandan keyin darhol nima qilish kerak?",
+        test_q3_opt1: "Do‘stingga qo‘ng‘iroq qil",
+        test_q3_opt2: "Evakuatorni kutib, hech nima qilmay o‘tir",
+        test_q3_opt3: "ITSMda suratli so‘rov yarat",
+        test_submit: "✅ Testni yakunla",
+        badge_title: "Tabriklaymiz!",
+        badge_name: "Evakuatsiya ustasi",
+        badge_text: "Ura! Protsedura muvaffaqiyatli o‘zlashtirildi va bilimlar tasdiqlandi. Ushbu nishon sizning mijozlar xizmatini hatto favqulodda vaziyatda ham saqlab qolishga tayyorligingizni aks ettiradi.",
+        badge_xp: "Super",
+        footer_text: "© CarTaxi xizmati · 8 800 333 51 81 · Restoranlar uchun mikroo‘qitish",
+        test_result_please: "Iltimos, barcha savollarga javob bering.",
+        test_result_success: "🎉 Ajoyib! Barcha javoblar to‘g‘ri.",
+        test_result_fail: "Siz",
+        test_result_retry: "ball oldingiz. Yo‘riqnomani qayta o‘qing va qayta urinib ko‘ring."
+      },
+      tg: {
+        hero_title: "Расондани ТС эвакуатсия",
+        hero_sub: "Микроомӯзиш барои гурӯҳи роҳбарикунанда",
+        progress_label: "Прогресси омӯзиш",
+        awareness_title: "Чаро эвакуатор — танҳо ҳангоми садама/вайроншавӣ ва танҳо бо CarTaxi",
+        awareness_when_title: "🚨 Кай эвакуатсия иҷозат дода мешавад",
+        awareness_when_text: "Даъвати эвакуатор танҳо дар ду ҳолат имконпазир аст: садамаи нақлиётӣ ё вайроншавии техникӣ, ки воситаи нақлиёт (ТС) бо ҳаракати худ идома дода наметавонад.",
+        awareness_when_li1: "<strong>Бехатарӣ.</strong> Воситаи нақлиёти (ТС) дорои осеби ҷиддӣ ё системаи тормоз/рули корношоям барои ронанда ва атрофиён хатар эҷод мекунад.",
+        awareness_when_li2: "<strong>Нигоҳдорӣ.</strong> Кӯшиши расидан ба тарабхона бо воситаи нақлиёти (ТС) вайроншуда хатари дубора вайрон шудан ё вайроншавии нав + боз истодан дар роҳро зиёд мекунад.",
+        awareness_when_li3: "<strong>Масъулияти роҳбар.</strong> Менеҷере, ки ҳаракати воситаи нақлиёти (ТС) садамавиро иҷозат дод, хатари амиқтар шудани вайроншавӣ ва садамаи эҳтимолиро ба зимма мегирад. Эвакуатор — ҳалли зуд ва бехатар.",
+        awareness_why_title: "🤝 Чаро танҳо пудратчии расмии CarTaxi",
+        awareness_why_text: "Даъвати эвакуатор бояд танҳо тавассути хидмати шарики корпоративии мо CarTaxi сурат гирад. Истифодаи хидматҳои бегона манъ аст.",
+        card1_title: "💰 Назорати молиявӣ",
+        card1_desc: "Пардохтҳои ғайринақдӣ тибқи шартнома, тарифҳои шаффоф. Пули нақд не, чекҳои \"чап\" не. Ҳар як эвакуатсия бо дархост дар ITSM тасдиқ мешавад.",
+        card2_title: "⏱️ Суръати расидан",
+        card2_desc: "Вақти миёнаи расидани CarTaxi — 40 дақиқа. Диспетчер суроғаҳо ва талаботи моро медонад, шарҳи тӯлонӣ лозим нест.",
+        card3_title: "🛡️ Ҳимояи ҳуқуқӣ",
+        card3_desc: "Шартномаи расмӣ суғуртаи бор ва воситаи нақлиётро (ТС) кафолат медиҳад. Ҳангоми расонидани зарар ҳангоми интиқол масъулият ба зиммаи пудратчист.",
+        card4_title: "📊 Баҳисобгирӣ ва таҳлил",
+        card4_desc: "Ҳар як дархост ба ҳисобот дохил мешавад. Ин ба шуъбаи нақлиёт имкон медиҳад, ки хароҷотро назорат ва хидматрасонии автопаркро ба нақша гирад.",
+        awareness_warning: "<strong>Даъвати эвакуатори тасодуфӣ таҳдид мекунад:</strong> хароҷоти назоратнашаванда, набудани ҳуҷҷатҳо барои муҳосибӣ ва масъулияти шахсии менеҷер.",
+        desire_title: "Фоидаи шумо ҳамчун менеҷер",
+        desire_1_title: "Ҳалли зуд.",
+        desire_1_desc: "Риояи расмиёт раванди эвакуатсияи воситаи нақлиётро (ТС) метезонад.",
+        desire_2_title: "Масъулияти молиявӣ надорад.",
+        desire_2_desc: "Ҳангоми дуруст даъват кардани CarTaxi, ҳама хароҷотро ширкат пардохт мекунад.",
+        desire_3_title: "Баланд шудани обрӯ.",
+        desire_3_desc: "Даста мебинад, ки роҳбар аниқ ва бидуни ваҳм амал мекунад — ин бовариро мустаҳкам мекунад.",
+        desire_badge_hint: "Омӯзишро то охир гузаред.",
+        knowledge_title: "Дастури пурра: қадам ба қадам",
+        knowledge_step1_title: "Таъмини бехатарӣ.",
+        knowledge_step1_desc: "Сигнали садамавиро фурӯзон кун, аломати истгоҳи садамавиро гузор. Агар садама шуда бошад, ДПС-ро даъват кун ва сурат гир.",
+        knowledge_step2_title: "Ба CarTaxi 8 800 333 51 81 занг зан.",
+        knowledge_step2_desc: "Хабар деҳ: ту аз ООО «Проксима» (ё Тануки) ҳастӣ, ному насаб, телефон, рақами давлатии ТС, аз куҷо ва ба куҷо бурдан лозим, ҳолати ТС (чархҳо, руль).",
+        knowledge_step3_title: "Дар ITSM дархост эҷод кун.",
+        knowledge_step3_desc: "Дархост эҷод кун, сурати эвакуатсияро замима кун — ин барои пардохти ғайринақдӣ асос аст.",
+        knowledge_step4_title: "Боркуниро назорат кун.",
+        knowledge_step4_desc: "Эвакуаторро интизор шав, боварӣ ҳосил кун, ки воситаи нақлиёт (ТС) мустаҳкам маҳкам шудааст. Ҳуҷҷатҳои ҳамроҳиро гир.",
+        knowledge_step5_title: "Сменаро огоҳ кун.",
+        knowledge_step5_desc: "Ҳолати расонданро нав кун. Маълумотро дар бораи воситаи нақлиёт (ТС) ба шуъбаи нақлиёт ва роҳбарони худ супор.",
+        knowledge_payment_note: "<strong>💳 Пардохт: ҳисоббаробаркунии ғайринақдӣ.</strong> Пули нақд — танҳо бо иҷозати шахсии роҳбари шуъбаи нақлиёт.",
+        test_title: "Худро санҷ: мини-тест",
+        test_desc: "Ба 3 савол ҷавоб деҳ, то дониши расмиётро тасдиқ кунӣ. 3/3 гирифтан лозим аст.",
+        test_q1: "1. Дар кадом ҳолатҳо эвакуатор даъват кардан мумкин аст?",
+        test_q1_opt1: "Агар курьер дер кунад",
+        test_q1_opt2: "Фақат ҳангоми садама ё вайроншавӣ, вақте ки воситаи нақлиёт (ТС) ҳаракат карда наметавонад",
+        test_q1_opt3: "Дар ҳама гуна носозиҳо, ҳатто агар ТС дар ҳаракат бошад",
+        test_q2: "2. Чаро эвакуатори тасодуфиро не, балки танҳо CarTaxi даъват кардан лозим?",
+        test_q2_opt1: "Чунки мошинҳои онҳо зебо ҳастанд",
+        test_q2_opt2: "Шартномаи расмӣ, пардохти ғайринақдӣ, назорати хароҷот ва суғурта",
+        test_q2_opt3: "Чунки директор чунин гуфт",
+        test_q3: "3. Пас аз занг задан ба CarTaxi фавран чӣ бояд кард?",
+        test_q3_opt1: "Ба дӯстат занг зан",
+        test_q3_opt2: "Эвакуаторро интизор шав ва ҳеҷ кор накун",
+        test_q3_opt3: "Дар ITSM дархост бо сурат эҷод кун",
+        test_submit: "✅ Тестро хатм кун",
+        badge_title: "Табрик мекунем!",
+        badge_name: "Устоди эвакуатсия",
+        badge_text: "Ура! Расмиёт бомуваффақият азхуд карда шуд ва донишҳо тасдиқ гардиданд. Ин нишон омодагии шуморо барои нигоҳ доштани хидматрасонии мизоҷон ҳатто дар ҳолатҳои фавқулодда инъикос мекунад.",
+        badge_xp: "Супер",
+        footer_text: "© Хидмати CarTaxi · 8 800 333 51 81 · Микроомӯзиш барои тарабхонаҳо",
+        test_result_please: "Лутфан, ба ҳамаи саволҳо ҷавоб диҳед.",
+        test_result_success: "🎉 Олӣ! Ҳамаи ҷавобҳо дуруст.",
+        test_result_fail: "Шумо",
+        test_result_retry: "хол гирифтед. Дастурро бори дигар хонед ва такрор кунед."
+      }
+    };
+
+    let currentLang = 'ru';
+
+    function applyLanguage(lang) {
+      currentLang = lang;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key] !== undefined) {
+          if (!el.querySelector('span') && !el.querySelector('input') && !el.querySelector('label') && !el.querySelector('strong')) {
+            el.textContent = translations[lang][key];
+          } else {
+            el.innerHTML = translations[lang][key];
+          }
+        }
+      });
+
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.lang === lang) btn.classList.add('active');
+      });
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => applyLanguage(btn.dataset.lang));
+    });
+
+    const xpBar = document.getElementById('xpBar');
+    const xpLabel = document.getElementById('xpLabel');
+    const sec5 = document.getElementById('sec5');
+    const badgeBox = document.getElementById('badgeBox');
+    const submitBtn = document.getElementById('submitTest');
+    const testResult = document.getElementById('testResult');
+    let xp = 0;
+    let sectionsCompleted = { sec1: false, sec2: false, sec3: false, test: false };
+
+    function markSectionComplete(id) {
+      if (!sectionsCompleted[id]) {
+        sectionsCompleted[id] = true;
+        addXP(25);
+      }
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (entry.target.id === 'sec1') markSectionComplete('sec1');
+          else if (entry.target.id === 'sec2') markSectionComplete('sec2');
+          else if (entry.target.id === 'sec3') markSectionComplete('sec3');
+        }
+      });
+    }, { threshold: 0.6 });
+
+    ['sec1','sec2','sec3'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    function addXP(amount) {
+      xp = Math.min(xp + amount, 100);
+      xpBar.style.width = xp + '%';
+      xpLabel.textContent = xp + ' / 100 XP';
+    }
+
+    submitBtn.addEventListener('click', () => {
+      const q1 = document.querySelector('input[name="q1"]:checked');
+      const q2 = document.querySelector('input[name="q2"]:checked');
+      const q3 = document.querySelector('input[name="q3"]:checked');
+      if (!q1 || !q2 || !q3) {
+        testResult.innerHTML = `<span style="color:#d32f2f;">${translations[currentLang].test_result_please}</span>`;
+        return;
+      }
+      const score = parseInt(q1.value) + parseInt(q2.value) + parseInt(q3.value);
+      if (score === 3) {
+        testResult.innerHTML = `<span style="color:#2e7d32;">${translations[currentLang].test_result_success}</span>`;
+        if (!sectionsCompleted.test) {
+          sectionsCompleted.test = true;
+          addXP(25);
+          sec5.style.display = 'block';
+          badgeBox.style.display = 'block';
+          submitBtn.disabled = true;
+          sec5.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else {
+        testResult.innerHTML = `<span style="color:#d32f2f;">${translations[currentLang].test_result_fail} ${score}/3. ${translations[currentLang].test_result_retry}</span>`;
+      }
+    });
+
+    applyLanguage('ru');
+  </script>
+</body>
+</html>
